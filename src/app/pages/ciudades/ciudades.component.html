@@ -1,0 +1,73 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+<h3>Mi tabla de ciudades</h3>
+<br>
+
+<div *ngIf = "ciudades.length === 0">
+    No hay ciudades
+</div>
+
+<div class ="container">
+    <div class = "col-12">
+        <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">Ciudad</th>
+                <th scope="col">Pais</th>
+                <th scope="col">Código</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor = "let ciudad of ciudades; let i = index; let even = even "[ngClass]="{even : even }" (click)="mostrarDetalles(i)">
+                    <td >{{ciudad.name}}</td>
+                    <td>{{ciudad.country}}</td>
+                    <td>{{ciudad.aptCode}}</td>
+                </tr>
+              
+            </tbody>
+          </table>
+    </div>
+</div>
+<div *ngIf= "indice >=0">
+   <h6>
+        Ciudad: {{ciudades[indice].name}} -
+        País: {{ciudades[indice].country}} -
+        Código: {{ciudades[indice].aptCode}} -
+        Temperatura: {{ciudades[indice].clima.temperatura | pipeGrados:'C'}} ºCelcius /
+        {{ciudades[indice].clima.temperatura | pipeGrados:'F'}} ºFarenheit -
+        Viento: {{ciudades[indice].clima.viento}} km/h -
+        Precipitaciones: {{ciudades[indice].clima.precipitaciones|percent}}
+   </h6>
+
+
+</div>
+
+<h3>Ingresa una ciudad</h3>
+<br>
+<div class = "container">
+    <div class = "col-12">
+
+        <form>
+            <div class="form-group">
+              <label>Ciudad</label>
+              <input type="text" #ciudad class="form-control">
+            </div>
+            <div class="form-group">
+              <label>Pais</label>
+              <input type="text" #pais class="form-control" >
+            </div>
+            <div class="form-group">
+                <label>Código</label>
+                <input type="text" #codigo class="form-control" >
+            </div>
+            <div class="form-group">
+                <label>Clima</label>
+                <input type="text" #clima class="form-control" placeholder="Temperatura, Viento, Precipitaciones">
+            </div>
+            
+            <input value="Save" type="button" class="btn btn-primary" (click)= "agregarCiudad(ciudad.value,pais.value,codigo.value,clima.value)" >
+          </form>
+
+    </div>
+
+</div>
